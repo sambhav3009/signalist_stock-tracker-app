@@ -20,7 +20,11 @@ const SignIn = () => {
         mode: 'onBlur',
     });
 
-    const onSubmit = async (data: SignInFormData) => { }
+    const onSubmit = async (data: SignInFormData) => {
+        // TODO: implement authentication
+        // Handle success case - redirect to dashboard
+        // Handle error case - show error message to user
+    }
 
 
     return (

@@ -27,11 +27,11 @@ const SignUp = () => {
             preferredIndustry: 'Technology'
         },
         mode: 'onBlur'
-    }, );
+    });
 
     const onSubmit = async (data: SignUpFormData) => {
         try {
-           console.log(data);
+           // TODO: implement authentication
         } catch (e) {
             console.error(e);
         }
@@ -57,7 +57,7 @@ const SignUp = () => {
                  placeholder="username@mail.com"
                  register={register}
                  error={errors.email}
-                 validation={{ required: 'Email name is required', pattern: /^\w+@\w+\.\w+$/, message: 'Email address is required' }}
+                 validation={{ required: 'Email name is required', pattern: { value: /^\w+@\w+\.\w+$/, message: 'Email address is required' } }}
              />
 
                 <InputField

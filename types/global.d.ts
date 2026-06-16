@@ -17,7 +17,7 @@ declare global {
     type CountrySelectProps = {
         name: string;
         label: string;
-        control: Control;
+        control: Control<any>;
         error?: FieldError;
         required?: boolean;
     };
@@ -27,7 +27,7 @@ declare global {
         label: string;
         placeholder: string;
         type?: string;
-        register: UseFormRegister;
+        register: UseFormRegister<any>;
         error?: FieldError;
         validation?: RegisterOptions;
         disabled?: boolean;
@@ -44,7 +44,7 @@ declare global {
         label: string;
         placeholder: string;
         options: readonly Option[];
-        control: Control;
+        control: Control<any>;
         error?: FieldError;
         required?: boolean;
     };
@@ -53,12 +53,6 @@ declare global {
         text: string;
         linkText: string;
         href: string;
-    };
-
-    type SearchCommandProps = {
-        renderAs?: 'button' | 'text';
-        label?: string;
-        initialStocks: StockWithWatchlistStatus[];
     };
 
     type WelcomeEmailData = {
