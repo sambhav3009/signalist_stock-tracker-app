@@ -1,10 +1,8 @@
 export const NAV_ITEMS = [
     { href: '/', label: 'Dashboard' },
     { href: '/search', label: 'Search' },
-    // { href: '/watchlist', label: 'Watchlist' },
 ];
 
-// Sign-up form select options
 export const INVESTMENT_GOALS = [
     { value: 'Growth', label: 'Growth' },
     { value: 'Income', label: 'Income' },
@@ -36,80 +34,97 @@ export const CONDITION_OPTIONS = [
     { value: 'less', label: 'Less than (<)' },
 ];
 
-// TradingView Charts
 export const MARKET_OVERVIEW_WIDGET_CONFIG = {
-    colorTheme: 'dark', // dark mode
-    dateRange: '12M', // last 12 months
-    locale: 'en', // language
-    largeChartUrl: '', // link to a large chart if needed
-    isTransparent: true, // makes background transparent
-    showFloatingTooltip: true, // show tooltip on hover
-    plotLineColorGrowing: '#0FEDBE', // line color when price goes up
-    plotLineColorFalling: '#0FEDBE', // line color when price falls
-    gridLineColor: 'rgba(240, 243, 250, 0)', // grid line color
-    scaleFontColor: '#DBDBDB', // font color for scale
-    belowLineFillColorGrowing: 'rgba(41, 98, 255, 0.12)', // fill under line when growing
-    belowLineFillColorFalling: 'rgba(41, 98, 255, 0.12)', // fill under line when falling
+    colorTheme: 'dark',
+    dateRange: '12M',
+    locale: 'en',
+    largeChartUrl: '',
+    isTransparent: true,
+    showFloatingTooltip: true,
+    plotLineColorGrowing: '#0FEDBE',
+    plotLineColorFalling: '#0FEDBE',
+    gridLineColor: 'rgba(240, 243, 250, 0)',
+    scaleFontColor: '#DBDBDB',
+    belowLineFillColorGrowing: 'rgba(41, 98, 255, 0.12)',
+    belowLineFillColorFalling: 'rgba(41, 98, 255, 0.12)',
     belowLineFillColorGrowingBottom: 'rgba(41, 98, 255, 0)',
     belowLineFillColorFallingBottom: 'rgba(41, 98, 255, 0)',
-    symbolActiveColor: 'rgba(15, 237, 190, 0.05)', // highlight color for active symbol
+    symbolActiveColor: 'rgba(15, 237, 190, 0.05)',
+
     tabs: [
         {
-            title: 'Financial',
+            title: 'Banking',
             symbols: [
-                { s: 'NYSE:JPM', d: 'JPMorgan Chase' },
-                { s: 'NYSE:WFC', d: 'Wells Fargo Co New' },
-                { s: 'NYSE:BAC', d: 'Bank Amer Corp' },
-                { s: 'NYSE:HSBC', d: 'Hsbc Hldgs Plc' },
-                { s: 'NYSE:C', d: 'Citigroup Inc' },
-                { s: 'NYSE:MA', d: 'Mastercard Incorporated' },
+                { s: 'BSE:HDFCBANK', d: 'HDFC Bank' },
+                { s: 'BSE:ICICIBANK', d: 'ICICI Bank' },
+                { s: 'BSE:SBIN', d: 'State Bank of India' },
+                { s: 'BSE:AXISBANK', d: 'Axis Bank' },
+                { s: 'BSE:KOTAKBANK', d: 'Kotak Mahindra Bank' },
             ],
         },
         {
-            title: 'Technology',
+            title: 'IT',
             symbols: [
-                { s: 'NASDAQ:AAPL', d: 'Apple' },
-                { s: 'NASDAQ:GOOGL', d: 'Alphabet' },
-                { s: 'NASDAQ:MSFT', d: 'Microsoft' },
-                { s: 'NASDAQ:FB', d: 'Meta Platforms' },
-                { s: 'NYSE:ORCL', d: 'Oracle Corp' },
-                { s: 'NASDAQ:INTC', d: 'Intel Corp' },
+                { s: 'BSE:TCS', d: 'TCS' },
+                { s: 'BSE:INFY', d: 'Infosys' },
+                { s: 'BSE:HCLTECH', d: 'HCLTech' },
+                { s: 'BSE:WIPRO', d: 'Wipro' },
+                { s: 'BSE:TECHM', d: 'Tech Mahindra' },
             ],
         },
         {
-            title: 'Services',
+            title: 'Energy',
             symbols: [
-                { s: 'NASDAQ:AMZN', d: 'Amazon' },
-                { s: 'NYSE:BABA', d: 'Alibaba Group Hldg Ltd' },
-                { s: 'NYSE:T', d: 'At&t Inc' },
-                { s: 'NYSE:WMT', d: 'Walmart' },
-                { s: 'NYSE:V', d: 'Visa' },
+                { s: 'BSE:RELIANCE', d: 'Reliance Industries' },
+                { s: 'BSE:ONGC', d: 'ONGC' },
+                { s: 'BSE:NTPC', d: 'NTPC' },
+                { s: 'BSE:POWERGRID', d: 'Power Grid' },
+                { s: 'BSE:ADANIGREEN', d: 'Adani Green' },
+            ],
+        },
+        {
+            title: 'Automobile',
+            symbols: [
+                { s: 'BSE:TATAMOTORS', d: 'Tata Motors' },
+                { s: 'BSE:MARUTI', d: 'Maruti Suzuki' },
+                { s: 'BSE:HYUNDAI', d: 'Hyundai Motor India' },
+                { s: 'BSE:BAJAJ_AUTO', d: 'Bajaj Auto' },
+                { s: 'BSE:EICHERMOT', d: 'Eicher Motors' },
+            ],
+        },
+        {
+            title: 'Pharma',
+            symbols: [
+                { s: 'BSE:SUNPHARMA', d: 'Sun Pharma' },
+                { s: 'BSE:DRREDDY', d: 'Dr. Reddy\'s Laboratories' },
+                { s: 'BSE:CIPLA', d: 'Cipla' },
+                { s: 'BSE:DIVISLAB', d: 'Divi\'s Laboratories' },
+                { s: 'BSE:AUROPHARMA', d: 'Aurobindo Pharma' },
             ],
         },
     ],
-    support_host: 'https://www.tradingview.com', // TradingView host
-    backgroundColor: '#141414', // background color
-    width: '100%', // full width
-    height: 600, // height in px
-    showSymbolLogo: true, // show logo next to symbols
-    showChart: true, // display mini chart
+
+    support_host: 'https://www.tradingview.com',
+    backgroundColor: '#141414',
+    width: '100%',
+    height: 600,
+    showSymbolLogo: true,
+    showChart: true,
 };
 
 export const HEATMAP_WIDGET_CONFIG = {
-    dataSource: 'SPX500',
+    exchanges: ['BSE'],
+    dataSource: 'SENSEX',
+    grouping: 'sector',
     blockSize: 'market_cap_basic',
     blockColor: 'change',
-    grouping: 'sector',
-    isTransparent: true,
     locale: 'en',
     symbolUrl: '',
     colorTheme: 'dark',
-    exchanges: [],
     hasTopBar: false,
     isDataSetEnabled: false,
     isZoomEnabled: true,
     hasSymbolTooltip: true,
-    isMonoSize: false,
     width: '100%',
     height: '600',
 };
@@ -126,7 +141,7 @@ export const TOP_STORIES_WIDGET_CONFIG = {
 };
 
 export const MARKET_DATA_WIDGET_CONFIG = {
-    title: 'Stocks',
+    title: 'Indian Stocks',
     width: '100%',
     height: 600,
     locale: 'en',
@@ -134,37 +149,63 @@ export const MARKET_DATA_WIDGET_CONFIG = {
     colorTheme: 'dark',
     isTransparent: false,
     backgroundColor: '#0F0F0F',
+
     symbolsGroups: [
         {
-            name: 'Financial',
+            name: 'Banking',
             symbols: [
-                { name: 'NYSE:JPM', displayName: 'JPMorgan Chase' },
-                { name: 'NYSE:WFC', displayName: 'Wells Fargo Co New' },
-                { name: 'NYSE:BAC', displayName: 'Bank Amer Corp' },
-                { name: 'NYSE:HSBC', displayName: 'Hsbc Hldgs Plc' },
-                { name: 'NYSE:C', displayName: 'Citigroup Inc' },
-                { name: 'NYSE:MA', displayName: 'Mastercard Incorporated' },
+                { name: 'BSE:HDFCBANK', displayName: 'HDFC Bank' },
+                { name: 'BSE:ICICIBANK', displayName: 'ICICI Bank' },
+                { name: 'BSE:SBIN', displayName: 'SBI' },
+                { name: 'BSE:AXISBANK', displayName: 'Axis Bank' },
+                { name: 'BSE:KOTAKBANK', displayName: 'Kotak Mahindra Bank' },
             ],
         },
         {
-            name: 'Technology',
+            name: 'IT',
             symbols: [
-                { name: 'NASDAQ:AAPL', displayName: 'Apple' },
-                { name: 'NASDAQ:GOOGL', displayName: 'Alphabet' },
-                { name: 'NASDAQ:MSFT', displayName: 'Microsoft' },
-                { name: 'NASDAQ:FB', displayName: 'Meta Platforms' },
-                { name: 'NYSE:ORCL', displayName: 'Oracle Corp' },
-                { name: 'NASDAQ:INTC', displayName: 'Intel Corp' },
+                { name: 'BSE:TCS', displayName: 'TCS' },
+                { name: 'BSE:INFY', displayName: 'Infosys' },
+                { name: 'BSE:HCLTECH', displayName: 'HCLTech' },
+                { name: 'BSE:WIPRO', displayName: 'Wipro' },
+                { name: 'BSE:TECHM', displayName: 'Tech Mahindra' },
             ],
         },
         {
-            name: 'Services',
+            name: 'Energy',
             symbols: [
-                { name: 'NASDAQ:AMZN', displayName: 'Amazon' },
-                { name: 'NYSE:BABA', displayName: 'Alibaba Group Hldg Ltd' },
-                { name: 'NYSE:T', displayName: 'At&t Inc' },
-                { name: 'NYSE:WMT', displayName: 'Walmart' },
-                { name: 'NYSE:V', displayName: 'Visa' },
+                { name: 'BSE:RELIANCE', displayName: 'Reliance Industries' },
+                { name: 'BSE:ONGC', displayName: 'ONGC' },
+                { name: 'BSE:NTPC', displayName: 'NTPC' },
+                { name: 'BSE:POWERGRID', displayName: 'Power Grid' },
+            ],
+        },
+        {
+            name: 'Automobile',
+            symbols: [
+                { name: 'BSE:TATAMOTORS', displayName: 'Tata Motors' },
+                { name: 'BSE:MARUTI', displayName: 'Maruti Suzuki' },
+                { name: 'BSE:HYUNDAI', displayName: 'Hyundai Motor India' },
+                { name: 'BSE:BAJAJ_AUTO', displayName: 'Bajaj Auto' },
+            ],
+        },
+        {
+            name: 'FMCG',
+            symbols: [
+                { name: 'BSE:ITC', displayName: 'ITC' },
+                { name: 'BSE:HINDUNILVR', displayName: 'HUL' },
+                { name: 'BSE:NESTLEIND', displayName: 'Nestlé India' },
+                { name: 'BSE:BRITANNIA', displayName: 'Britannia' },
+            ],
+        },
+        {
+            name: 'Pharma',
+            symbols: [
+                { name: 'BSE:SUNPHARMA', displayName: 'Sun Pharma' },
+                { name: 'BSE:DRREDDY', displayName: 'Dr. Reddy\'s Laboratories' },
+                { name: 'BSE:CIPLA', displayName: 'Cipla' },
+                { name: 'BSE:DIVISLAB', displayName: 'Divi\'s Laboratories' },
+                { name: 'BSE:AUROPHARMA', displayName: 'Aurobindo Pharma' },
             ],
         },
     ],
@@ -194,7 +235,7 @@ export const CANDLE_CHART_WIDGET_CONFIG = (symbol: string) => ({
     style: 1,
     symbol: symbol.toUpperCase(),
     theme: 'dark',
-    timezone: 'Etc/UTC',
+    timezone: 'Asia/Kolkata',
     backgroundColor: '#141414',
     gridColor: '#141414',
     watchlist: [],
@@ -220,7 +261,7 @@ export const BASELINE_WIDGET_CONFIG = (symbol: string) => ({
     style: 10,
     symbol: symbol.toUpperCase(),
     theme: 'dark',
-    timezone: 'Etc/UTC',
+    timezone: 'Asia/Kolkata',
     backgroundColor: '#141414',
     gridColor: '#141414',
     watchlist: [],
@@ -234,7 +275,7 @@ export const BASELINE_WIDGET_CONFIG = (symbol: string) => ({
 export const TECHNICAL_ANALYSIS_WIDGET_CONFIG = (symbol: string) => ({
     symbol: symbol.toUpperCase(),
     colorTheme: 'dark',
-    isTransparent: 'true',
+    isTransparent: true,
     locale: 'en',
     width: '100%',
     height: 400,
@@ -245,7 +286,7 @@ export const TECHNICAL_ANALYSIS_WIDGET_CONFIG = (symbol: string) => ({
 export const COMPANY_PROFILE_WIDGET_CONFIG = (symbol: string) => ({
     symbol: symbol.toUpperCase(),
     colorTheme: 'dark',
-    isTransparent: 'true',
+    isTransparent: true,
     locale: 'en',
     width: '100%',
     height: 440,
@@ -254,7 +295,7 @@ export const COMPANY_PROFILE_WIDGET_CONFIG = (symbol: string) => ({
 export const COMPANY_FINANCIALS_WIDGET_CONFIG = (symbol: string) => ({
     symbol: symbol.toUpperCase(),
     colorTheme: 'dark',
-    isTransparent: 'true',
+    isTransparent: true,
     locale: 'en',
     width: '100%',
     height: 464,
@@ -263,65 +304,35 @@ export const COMPANY_FINANCIALS_WIDGET_CONFIG = (symbol: string) => ({
 });
 
 export const POPULAR_STOCK_SYMBOLS = [
-    // Tech Giants (the big technology companies)
-    'AAPL',
-    'MSFT',
-    'GOOGL',
-    'AMZN',
-    'TSLA',
-    'META',
-    'NVDA',
-    'NFLX',
-    'ORCL',
-    'CRM',
+    'TCS',
+    'INFY',
+    'HCLTECH',
+    'WIPRO',
+    'TECHM',
 
-    // Growing Tech Companies
-    'ADBE',
-    'INTC',
-    'AMD',
-    'PYPL',
-    'UBER',
-    'ZOOM',
-    'SPOT',
-    'SQ',
-    'SHOP',
-    'ROKU',
+    'HDFCBANK',
+    'ICICIBANK',
+    'SBIN',
+    'AXISBANK',
+    'KOTAKBANK',
 
-    // Newer Tech Companies
-    'SNOW',
-    'PLTR',
-    'COIN',
-    'RBLX',
-    'DDOG',
-    'CRWD',
-    'NET',
-    'OKTA',
-    'TWLO',
-    'ZM',
+    'RELIANCE',
+    'ONGC',
+    'NTPC',
+    'POWERGRID',
+    'ADANIGREEN',
 
-    // Consumer & Delivery Apps
-    'DOCU',
-    'PTON',
-    'PINS',
-    'SNAP',
-    'LYFT',
-    'DASH',
-    'ABNB',
-    'RIVN',
-    'LCID',
-    'NIO',
+    'TATAMOTORS',
+    'MARUTI',
+    'M&M',
+    'BAJAJ_AUTO',
+    'EICHERMOT',
 
-    // International Companies
-    'XPEV',
-    'LI',
-    'BABA',
-    'JD',
-    'PDD',
-    'TME',
-    'BILI',
-    'DIDI',
-    'GRAB',
-    'SE',
+    'ITC',
+    'HINDUNILVR',
+    'NESTLEIND',
+    'BRITANNIA',
+    'TATACONSUM',
 ];
 
 export const NO_MARKET_NEWS =
