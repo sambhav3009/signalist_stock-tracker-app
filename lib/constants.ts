@@ -1,7 +1,7 @@
 export const NAV_ITEMS = [
     { href: '/', label: 'Dashboard' },
     { href: '/search', label: 'Search' },
-    // { href: '/watchlist', label: 'Watchlist' },
+    // { href: '/watchlist.model.ts', label: 'Watchlist' },
 ];
 
 // Sign-up form select options
@@ -268,53 +268,53 @@ export const COMPANY_FINANCIALS_WIDGET_CONFIG = (symbol: string) => ({
 
 export const POPULAR_STOCK_SYMBOLS = [
     // Banking & Financial
-    'BSE:HDFCBANK',
-    'BSE:ICICIBANK',
-    'BSE:SBIN',
-    'BSE:AXISBANK',
-    'BSE:KOTAKBANK',
-    'BSE:BAJFINANCE',
+    'HDFCBANK.NS',
+    'ICICIBANK.NS',
+    'SBIN.NS',
+    'AXISBANK.NS',
+    'KOTAKBANK.NS',
+    'BAJFINANCE.NS',
 
     // Technology
-    'BSE:TCS',
-    'BSE:INFY',
-    'BSE:HCLTECH',
-    'BSE:WIPRO',
-    'BSE:TECHM',
-    'BSE:LTIM',
+    'TCS.NS',
+    'INFY.NS',
+    'HCLTECH.NS',
+    'WIPRO.NS',
+    'TECHM.NS',
+    'LTIM.NS',
 
     // Energy & Conglomerates
-    'BSE:RELIANCE',
-    'BSE:ONGC',
-    'BSE:NTPC',
-    'BSE:POWERGRID',
-    'BSE:ADANIENT',
+    'RELIANCE.NS',
+    'ONGC.NS',
+    'NTPC.NS',
+    'POWERGRID.NS',
+    'ADANIENT.NS',
 
     // Consumer & FMCG
-    'BSE:ITC',
-    'BSE:HINDUNILVR',
-    'BSE:NESTLEIND',
-    'BSE:ASIANPAINT',
-    'BSE:TITAN',
+    'ITC.NS',
+    'HINDUNILVR.NS',
+    'NESTLEIND.NS',
+    'ASIANPAINT.NS',
+    'TITAN.NS',
 
     // Automobile
-    'BSE:MARUTI',
-    'BSE:TATAMOTORS',
-    'BSE:M&M',
-    'BSE:EICHERMOT',
-    'BSE:BAJAJ-AUTO',
+    'MARUTI.NS',
+    'TATAMOTORS.NS',
+    'M&M.NS',
+    'EICHERMOT.NS',
+    'BAJAJ-AUTO.NS',
 
     // Telecom & Services
-    'BSE:BHARTIARTL',
-    'BSE:INDIGO',
-    'BSE:IRCTC',
+    'BHARTIARTL.NS',
+    'INDIGO.NS',
+    'IRCTC.NS',
 
     // Infrastructure / Industrial
-    'BSE:LT',
-    'BSE:ULTRACEMCO',
-    'BSE:TATASTEEL',
-    'BSE:JSWSTEEL',
-    'BSE:ADANIPORTS',
+    'LT.NS',
+    'ULTRACEMCO.NS',
+    'TATASTEEL.NS',
+    'JSWSTEEL.NS',
+    'ADANIPORTS.NS',
 ];
 
 export const NO_MARKET_NEWS =

@@ -25,37 +25,81 @@ export function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// Formatted string like "$3.10T", "$900.00B", "$25.00M" or "$999,999.99"
-export function formatMarketCapValue(marketCapUsd: number): string {
-  if (!Number.isFinite(marketCapUsd) || marketCapUsd <= 0) return 'N/A';
+// Format market cap using Indian Rupees
+export function formatMarketCapValue(marketCap: number): string {
+  if (!Number.isFinite(marketCap) || marketCap <= 0) return 'N/A';
 
-  if (marketCapUsd >= 1e12) return `$${(marketCapUsd / 1e12).toFixed(2)}T`; // Trillions
-  if (marketCapUsd >= 1e9) return `$${(marketCapUsd / 1e9).toFixed(2)}B`; // Billions
-  if (marketCapUsd >= 1e6) return `$${(marketCapUsd / 1e6).toFixed(2)}M`; // Millions
-  return `$${marketCapUsd.toFixed(2)}`; // Below one million, show full USD amount
+  if (marketCap >= 1e12) {
+    return `₹${(marketCap / 1e12).toFixed(2)}T`;
+  }
+
+  if (marketCap >= 1e9) {
+    return `₹${(marketCap / 1e9).toFixed(2)}B`;
+  }
+
+  if (marketCap >= 1e7) {
+    return `₹${(marketCap / 1e7).toFixed(2)}Cr`;
+  }
+
+  if (marketCap >= 1e5) {
+    return `₹${(marketCap / 1e5).toFixed(2)}L`;
+  }
+
+  return `₹${marketCap.toFixed(2)}`;
 }
 
+// Get date range using Indian Standard Time
 export const getDateRange = (days: number) => {
-  const toDate = new Date();
-  const fromDate = new Date();
-  fromDate.setDate(toDate.getDate() - days);
+  const now = new Date();
+
+  const parts = new Intl.DateTimeFormat('en-IN', {
+    timeZone: 'Asia/Kolkata',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(now);
+
+  const year = Number(parts.find((p) => p.type === 'year')?.value);
+  const month = Number(parts.find((p) => p.type === 'month')?.value);
+  const day = Number(parts.find((p) => p.type === 'day')?.value);
+
+  const today = new Date(year, month - 1, day);
+
+  const fromDate = new Date(today);
+  fromDate.setDate(today.getDate() - days);
+
+  const formatDate = (date: Date) => {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+
+    return `${y}-${m}-${d}`;
+  };
+
   return {
-    to: toDate.toISOString().split('T')[0],
-    from: fromDate.toISOString().split('T')[0],
+    to: formatDate(today),
+    from: formatDate(fromDate),
   };
 };
 
-// Get today's date range (from today to today)
+// Get today's date in YYYY-MM-DD format using IST
+export const getTodayString = () => {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Kolkata',
+  }).format(new Date());
+};
+
+// Get today's date range
 export const getTodayDateRange = () => {
-  const today = new Date();
-  const todayString = today.toISOString().split('T')[0];
+  const todayString = getTodayString();
+
   return {
     to: todayString,
     from: todayString,
   };
 };
 
-// Calculate news per symbol based on watchlist size
+// Calculate news per symbol based on watchlist.model.ts size
 export const calculateNewsDistribution = (symbolsCount: number) => {
   let itemsPerSymbol: number;
   let targetNewsCount = 6;
@@ -74,11 +118,12 @@ export const calculateNewsDistribution = (symbolsCount: number) => {
 
 // Check for required article fields
 export const validateArticle = (article: RawNewsArticle) =>
-    article.headline && article.summary && article.url && article.datetime;
+    article.headline &&
+    article.summary &&
+    article.url &&
+    article.datetime;
 
-// Get today's date string in YYYY-MM-DD format
-export const getTodayString = () => new Date().toISOString().split('T')[0];
-
+// Format article
 export const formatArticle = (
     article: RawNewsArticle,
     isCompanyNews: boolean,
@@ -89,7 +134,8 @@ export const formatArticle = (
   headline: article.headline!.trim(),
   summary:
       article.summary!.trim().substring(0, isCompanyNews ? 200 : 150) + '...',
-  source: article.source || (isCompanyNews ? 'Company News' : 'Market News'),
+  source:
+      article.source || (isCompanyNews ? 'Company News' : 'Market News'),
   url: article.url!,
   datetime: article.datetime!,
   image: article.image || '',
@@ -97,43 +143,58 @@ export const formatArticle = (
   related: isCompanyNews ? symbol! : article.related || '',
 });
 
+// Format percentage change
 export const formatChangePercent = (changePercent?: number) => {
   if (!changePercent) return '';
+
   const sign = changePercent > 0 ? '+' : '';
+
   return `${sign}${changePercent.toFixed(2)}%`;
 };
 
+// Get color class based on percentage change
 export const getChangeColorClass = (changePercent?: number) => {
   if (!changePercent) return 'text-gray-400';
-  return changePercent > 0 ? 'text-green-500' : 'text-red-500';
+
+  return changePercent > 0
+      ? 'text-green-500'
+      : 'text-red-500';
 };
 
-export const formatPrice = (price: number) => {
-  return new Intl.NumberFormat('en-US', {
+// Format stock price in Indian Rupees
+export const formatPrice = (price: number): string => {
+  return new Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'INR',
     minimumFractionDigits: 2,
   }).format(price);
 };
 
-export const formatDateToday = new Date().toLocaleDateString('en-US', {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-  timeZone: 'UTC',
-});
+// Today's formatted date in Indian Standard Time
+export const formatDateToday: string = new Date().toLocaleDateString(
+    'en-IN',
+    {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      timeZone: 'Asia/Kolkata',
+    }
+);
 
-
+// Get alert text
 export const getAlertText = (alert: Alert) => {
   const condition = alert.alertType === 'upper' ? '>' : '<';
+
   return `Price ${condition} ${formatPrice(alert.threshold)}`;
 };
 
-export const getFormattedTodayDate = () => new Date().toLocaleDateString('en-US', {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-  timeZone: 'UTC',
-});
+// Get today's formatted date in IST
+export const getFormattedTodayDate = (): string =>
+    new Date().toLocaleDateString('en-IN', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      timeZone: 'Asia/Kolkata',
+    });
