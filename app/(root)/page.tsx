@@ -5,6 +5,8 @@ import {
     MARKET_OVERVIEW_WIDGET_CONFIG,
     TOP_STORIES_WIDGET_CONFIG
 } from "@/lib/constants";
+import FAQ from "@/components/FAQ";
+import Footer from "@/components/Footer";
 
 const Home = () => {
     const scriptUrl = 'https://s3.tradingview.com/external-embedding/embed-widget-'
@@ -46,6 +48,8 @@ const Home = () => {
                     />
                 </div>
             </section>
+            <FAQ />
+            <Footer />
         </div>
     );
 };
