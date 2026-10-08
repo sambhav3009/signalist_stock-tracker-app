@@ -2,6 +2,8 @@
 
 import { connectToDatabase } from '@/database/mongoose';
 import { Watchlist } from '@/database/models/watchlist.model';
+import { auth } from '@/lib/better-auth/auth';
+import { headers } from 'next/headers';
 
 export async function getWatchlistSymbolsByEmail(email: string): Promise<string[]> {
     if (!email) return [];
@@ -24,5 +26,39 @@ export async function getWatchlistSymbolsByEmail(email: string): Promise<string[
     } catch (err) {
         console.error('getWatchlistSymbolsByEmail error:', err);
         return [];
+    }
+}
+
+export async function toggleWatchlist(symbol: string, company?: string) {
+    if (!symbol) return { success: false, error: 'Symbol is required' };
+
+    try {
+        const session = await auth.api.getSession({ headers: await headers() });
+        if (!session?.user?.id) {
+            return { success: false, error: 'Unauthorized' };
+        }
+
+        const userId = session.user.id;
+        const normalizedSymbol = symbol.toUpperCase().trim();
+        const normalizedCompany = (company || symbol).trim();
+
+        await connectToDatabase();
+
+        const existing = await Watchlist.findOne({ userId, symbol: normalizedSymbol });
+        if (existing) {
+            await Watchlist.deleteOne({ _id: existing._id });
+            return { success: true, isInWatchlist: false };
+        } else {
+            await Watchlist.create({
+                userId,
+                symbol: normalizedSymbol,
+                company: normalizedCompany,
+                addedAt: new Date(),
+            });
+            return { success: true, isInWatchlist: true };
+        }
+    } catch (err) {
+        console.error('toggleWatchlist error:', err);
+        return { success: false, error: 'Failed to update watchlist' };
     }
 }
