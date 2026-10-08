@@ -29,6 +29,28 @@ export async function getWatchlistSymbolsByEmail(email: string): Promise<string[
     }
 }
 
+export async function getWatchlistItems(): Promise<{ symbol: string; company: string; addedAt: string }[]> {
+    try {
+        const session = await auth.api.getSession({ headers: await headers() });
+        if (!session?.user?.id) return [];
+
+        await connectToDatabase();
+
+        const items = await Watchlist.find({ userId: session.user.id })
+            .sort({ addedAt: -1 })
+            .lean();
+
+        return items.map((item) => ({
+            symbol: String(item.symbol),
+            company: String(item.company),
+            addedAt: item.addedAt ? new Date(item.addedAt).toISOString() : new Date().toISOString(),
+        }));
+    } catch (err) {
+        console.error('getWatchlistItems error:', err);
+        return [];
+    }
+}
+
 export async function toggleWatchlist(symbol: string, company?: string) {
     if (!symbol) return { success: false, error: 'Symbol is required' };
 
