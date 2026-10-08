@@ -174,8 +174,22 @@ export const MARKET_DATA_WIDGET_CONFIG = {
     ],
 };
 
+const getTradingViewSymbol = (symbol: string) => {
+    const upperSymbol = symbol.toUpperCase();
+
+    if (upperSymbol.endsWith('.NS')) {
+        return `BSE:${upperSymbol.replace('.NS', '')}`;
+    }
+
+    if (upperSymbol.endsWith('.BO')) {
+        return `BSE:${upperSymbol.replace('.BO', '')}`;
+    }
+
+    return upperSymbol;
+};
+
 export const SYMBOL_INFO_WIDGET_CONFIG = (symbol: string) => ({
-    symbol: symbol.toUpperCase(),
+    symbol: getTradingViewSymbol(symbol),
     colorTheme: 'dark',
     isTransparent: true,
     locale: 'en',
@@ -196,7 +210,7 @@ export const CANDLE_CHART_WIDGET_CONFIG = (symbol: string) => ({
     locale: 'en',
     save_image: false,
     style: 1,
-    symbol: symbol.toUpperCase(),
+    symbol: getTradingViewSymbol(symbol),
     theme: 'dark',
     timezone: 'Etc/UTC',
     backgroundColor: '#141414',
@@ -222,7 +236,7 @@ export const BASELINE_WIDGET_CONFIG = (symbol: string) => ({
     locale: 'en',
     save_image: false,
     style: 10,
-    symbol: symbol.toUpperCase(),
+    symbol: getTradingViewSymbol(symbol),
     theme: 'dark',
     timezone: 'Etc/UTC',
     backgroundColor: '#141414',
@@ -236,7 +250,7 @@ export const BASELINE_WIDGET_CONFIG = (symbol: string) => ({
 });
 
 export const TECHNICAL_ANALYSIS_WIDGET_CONFIG = (symbol: string) => ({
-    symbol: symbol.toUpperCase(),
+    symbol: getTradingViewSymbol(symbol),
     colorTheme: 'dark',
     isTransparent: 'true',
     locale: 'en',
@@ -247,7 +261,7 @@ export const TECHNICAL_ANALYSIS_WIDGET_CONFIG = (symbol: string) => ({
 });
 
 export const COMPANY_PROFILE_WIDGET_CONFIG = (symbol: string) => ({
-    symbol: symbol.toUpperCase(),
+    symbol: getTradingViewSymbol(symbol),
     colorTheme: 'dark',
     isTransparent: 'true',
     locale: 'en',
@@ -256,7 +270,7 @@ export const COMPANY_PROFILE_WIDGET_CONFIG = (symbol: string) => ({
 });
 
 export const COMPANY_FINANCIALS_WIDGET_CONFIG = (symbol: string) => ({
-    symbol: symbol.toUpperCase(),
+    symbol: getTradingViewSymbol(symbol),
     colorTheme: 'dark',
     isTransparent: 'true',
     locale: 'en',
