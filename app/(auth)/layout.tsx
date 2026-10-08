@@ -1,7 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
+import {auth} from "@/lib/better-auth/auth";
+import {headers} from "next/headers";
+import {redirect} from "next/navigation";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = async ({ children }: { children : React.ReactNode }) => {
+    const session = await auth.api.getSession({ headers: await headers() })
+
+    if(session?.user) redirect('/')
+
     return (
         <main className="auth-layout">
             <section className="auth-left-section scrollbar-hide-default">
@@ -19,12 +26,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                     </blockquote>
                     <div className="flex items-center justify-between">
                         <div>
-                            <cite className="auth-testimonial-author">- Anonymous </cite>
+                            <cite className="auth-testimonial-author">- Anonymous</cite>
                             <p className="max-md:text-xs text-gray-500">Retail Investor</p>
                         </div>
                         <div className="flex items-center gap-0.5">
                             {[1, 2, 3, 4, 5].map((star) => (
-                                <Image src="/assets/icons/star.svg" alt="" aria-hidden="true" key={star} width={20} height={20} className="w-5 h-5" />
+                                <Image src="/assets/icons/star.svg" alt="Star" key={star} width={20} height={20} className="w-5 h-5" />
                             ))}
                         </div>
                     </div>
@@ -37,4 +44,4 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </main>
     )
 }
-export default Layout;
+export default Layout
